@@ -1,1 +1,1 @@
-export var BASE_URL = "http://159.223.112.225/"
+export var BASE_URL = "https://policyfy.info/"

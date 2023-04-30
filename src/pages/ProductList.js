@@ -68,7 +68,6 @@ function ProductList() {
                             variant="outlined"
                             color="error"
                             style={stylingObject.buttons}
-                            disabled={isDeleteAllDisabled}
                             onClick={() => deleteAll()}>
                             MASS DELETE
                         </Button>

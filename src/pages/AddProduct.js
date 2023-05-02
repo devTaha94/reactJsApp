@@ -68,13 +68,32 @@ function AddProduct() {
 
 
     useEffect(() => {
+        let selectedType = types[0];
+        setSelectedType(selectedType);
+        axios.get(`${CONSTANTS.BASE_URL}getProductTypeVariants/${selectedType.alias}`,
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => setVariants(response.data.data))
+    }, [types]);
+
+
+    useEffect(() => {
         axios.get(`${CONSTANTS.BASE_URL}getProductTypes`,
             {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => setTypes(response.data.data))
+            .then(response => {
+                setTypes(response.data.data)
+              setTimeout(()=> {
+
+              },3000);
+            })
+
     }, []);
 
     const selectType = (e) => {
@@ -89,7 +108,6 @@ function AddProduct() {
                 }
             })
             .then(response => setVariants(response.data.data))
-
     }
 
     return (
@@ -122,7 +140,7 @@ function AddProduct() {
                                 <div style={stylingObject.inputContainer}>
                                     <label>Type Switcher</label>
                                     <select id="productType" onChange={selectType}>
-                                        <option value={null}>Select Product Type</option>
+                                        {/*<option value={null}>Select Product Type</option>*/}
                                         {types.map((item) => (
                                             <option key={item.id} value={item.alias}>{item.name}</option>
                                         ))}
@@ -133,7 +151,7 @@ function AddProduct() {
                                       return (
                                           <div style={stylingObject.inputContainer} key={key}>
                                               <label>{item.variant_name} ({selectedType.unit})</label>
-                                              <input id={item.variant_alias} name={item.variant_alias} style={stylingObject.input} placeholder={item.variant_name} type={'number'}  required onChange={(event) => handleVariants(event.target.name, event.target.value)}/>
+                                              <input id={item.variant_alias} style={stylingObject.input} placeholder={item.variant_name} type={'number'} name={item.variant_id} required onChange={(event) => handleVariants(event.target.name, event.target.value)}/>
                                           </div>
                                       )
                                     })

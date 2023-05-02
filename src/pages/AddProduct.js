@@ -133,7 +133,7 @@ function AddProduct() {
                                       return (
                                           <div style={stylingObject.inputContainer} key={key}>
                                               <label>{item.variant_name} ({selectedType.unit})</label>
-                                              <input id={item.variant_alias} style={stylingObject.input} placeholder={item.variant_name} type={'number'} name={item.variant_id} required onChange={(event) => handleVariants(event.target.name, event.target.value)}/>
+                                              <input id={item.variant_alias} name={item.variant_alias} style={stylingObject.input} placeholder={item.variant_name} type={'number'}  required onChange={(event) => handleVariants(event.target.name, event.target.value)}/>
                                           </div>
                                       )
                                     })

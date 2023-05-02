@@ -86,7 +86,6 @@ function AddProduct() {
 
     const selectType = (e) => {
         let selectedType = search(e.target.value, types);
-        alert(selectedType.id)
         setSelectedType(selectedType);
         setVariants([]);
         setVariantsValues([]);

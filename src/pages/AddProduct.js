@@ -68,35 +68,13 @@ function AddProduct() {
 
 
     useEffect(() => {
-        if (types.length > 0) {
-            let selectedType = types[0];
-            setSelectedType(selectedType);
-            axios.get(`${CONSTANTS.BASE_URL}getProductTypeVariants/${selectedType.alias}`,
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                .then(response => setVariants(response.data.data))
-        }
-
-    }, [types]);
-
-
-    useEffect(() => {
         axios.get(`${CONSTANTS.BASE_URL}getProductTypes`,
             {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(response => {
-                setTypes(response.data.data)
-              setTimeout(()=> {
-
-              },3000);
-            })
-
+            .then(response => setTypes(response.data.data))
     }, []);
 
     const selectType = (e) => {
@@ -111,6 +89,7 @@ function AddProduct() {
                 }
             })
             .then(response => setVariants(response.data.data))
+
     }
 
     return (
@@ -143,9 +122,9 @@ function AddProduct() {
                                 <div style={stylingObject.inputContainer}>
                                     <label>Type Switcher</label>
                                     <select id="productType" onChange={selectType}>
-                                        {/*<option value={null}>Select Product Type</option>*/}
+                                        <option value={null}>Select Product Type</option>
                                         {types.map((item) => (
-                                            <option key={item.id} value={item.alias}>{item.name}</option>
+                                            <option key={item.id} value={item.id}>{item.name}</option>
                                         ))}
                                     </select>
                                 </div>

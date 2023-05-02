@@ -32,7 +32,14 @@ function AddProduct() {
             setFormError('Please, submit required data');
         } else {
             setFormError('');
-
+            console.log({
+                'sku': sku,
+                'name': name,
+                'price': price,
+                'type': selectedType.alias,
+                'product_type_id': selectedType.id,
+                'options': variantsValues
+            });
             axios.post(`${CONSTANTS.BASE_URL}addProduct`,
                 {
                     'sku': sku,
@@ -79,6 +86,7 @@ function AddProduct() {
 
     const selectType = (e) => {
         let selectedType = search(e.target.value, types);
+        alert(selectedType.id)
         setSelectedType(selectedType);
         setVariants([]);
         setVariantsValues([]);
@@ -124,7 +132,7 @@ function AddProduct() {
                                     <select id="productType" onChange={selectType}>
                                         <option value={null}>Select Product Type</option>
                                         {types.map((item) => (
-                                            <option key={item.id} value={item.id}>{item.name}</option>
+                                            <option key={item.id} value={item.alias}>{item.name}</option>
                                         ))}
                                     </select>
                                 </div>

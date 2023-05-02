@@ -53,7 +53,10 @@ function ProductList() {
                     'Content-Type': 'multipart/form-data'
                 }
             })
-            .then(response => fetchProducts())
+            .then(response => {
+                setDeletedProducts([]);
+                fetchProducts()
+            })
     }
 
     return (

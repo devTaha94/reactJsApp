@@ -124,7 +124,7 @@ function AddProduct() {
                                     <select id="productType" onChange={selectType}>
                                         <option value={null}>Select Product Type</option>
                                         {types.map((item) => (
-                                            <option key={item.id} value={item.id}>{item.name}</option>
+                                            <option key={item.id} value={item.alias}>{item.name}</option>
                                         ))}
                                     </select>
                                 </div>

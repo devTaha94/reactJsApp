@@ -68,15 +68,18 @@ function AddProduct() {
 
 
     useEffect(() => {
-        let selectedType = types[0];
-        setSelectedType(selectedType);
-        axios.get(`${CONSTANTS.BASE_URL}getProductTypeVariants/${selectedType.alias}`,
-            {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(response => setVariants(response.data.data))
+        if (types.length > 0) {
+            let selectedType = types[0];
+            setSelectedType(selectedType);
+            axios.get(`${CONSTANTS.BASE_URL}getProductTypeVariants/${selectedType.alias}`,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => setVariants(response.data.data))
+        }
+
     }, [types]);
 
 

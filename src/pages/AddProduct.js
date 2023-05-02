@@ -7,7 +7,7 @@ import * as CONSTANTS from "../Consts";
 
 function search(nameKey, myArray) {
     for (let i = 0; i < myArray.length; i++) {
-        if (myArray[i].id == nameKey) {
+        if (myArray[i].alias == nameKey) {
             return myArray[i];
         }
     }
